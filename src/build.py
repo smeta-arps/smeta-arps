@@ -31,18 +31,22 @@ js = open(os.path.join(SRC, "converter.js"), encoding="utf-8").read()
 hero = ('<img class="hero-bg" src="img/hero-1920.jpg" srcset="img/hero-1280.jpg 1280w, img/hero-1920.jpg 1920w" '
         'sizes="100vw" width="1920" height="1072" alt="" fetchpriority="high">')
 
+ARROW = ('<svg class="gh-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" '
+         'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>')
 if GITHUB_URL:
-    gh_button = '<a class="btn navy" href="%s">%s Код на GitHub</a>' % (GITHUB_URL, GITHUB_ICON)
+    gh_card = ('<a class="gh-card" href="%s">%s<span><b>Открыть проект на GitHub</b>'
+               '<small>Исходный код, задачи и обсуждения</small></span>%s</a>'
+               % (GITHUB_URL, GITHUB_ICON.replace("<svg ", '<svg class="gh-logo" ', 1), ARROW))
     gh_foot = '<li><a href="%s">Код на GitHub</a></li>' % GITHUB_URL
 else:
-    gh_button = '<span class="btn off">%s Код на GitHub: скоро</span>' % GITHUB_ICON
+    gh_card = ""
     gh_foot = '<li class="soon">Код на GitHub: скоро</li>'
 
-for mark in ("<!--CONVERTER_SCRIPT-->", "<!--HERO_IMG-->", "<!--GITHUB_BUTTON-->", "<!--GITHUB_FOOT-->"):
+for mark in ("<!--CONVERTER_SCRIPT-->", "<!--HERO_IMG-->", "<!--GITHUB_CARD-->", "<!--GITHUB_FOOT-->"):
     assert mark in page, mark
 out = (page.replace("<!--CONVERTER_SCRIPT-->", "<script>\n" + js + "</script>")
            .replace("<!--HERO_IMG-->", hero)
-           .replace("<!--GITHUB_BUTTON-->", gh_button)
+           .replace("<!--GITHUB_CARD-->", gh_card)
            .replace("<!--GITHUB_FOOT-->", gh_foot))
 assert "—" not in out, "длинное тире в тексте страницы"
 
