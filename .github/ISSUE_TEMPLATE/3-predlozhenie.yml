@@ -1,0 +1,19 @@
+name: Предложение
+description: Идея, чего не хватает, какую программу или формат стоит поддержать.
+title: "Предложение: "
+labels: ["предложение"]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Что предлагаете
+      description: Опишите своими словами. Пример сметы или скриншот помогут.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Зачем это нужно
+      description: В какой ситуации пригодится.
+    validations:
+      required: false

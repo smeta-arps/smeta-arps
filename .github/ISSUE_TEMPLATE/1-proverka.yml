@@ -1,0 +1,67 @@
+name: Проверил в своей программе
+description: Загрузили файл в сметную программу? Расскажите, что получилось. Это самая полезная помощь проекту.
+title: "Проверка: "
+labels: ["проверка"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Спасибо! Проверочный файл и инструкция лежат в папке test-kit. Отрицательный результат тоже очень нужен.
+  - type: dropdown
+    id: program
+    attributes:
+      label: Программа
+      options:
+        - Estimate (Эстимэйт)
+        - Гранд-Смета
+        - Smeta.ru
+        - А0
+        - РИК
+        - Другая (напишу ниже)
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Версия программы
+      description: Обычно видна в заголовке окна или в меню «Справка», например 2.0 или 2024.2
+      placeholder: "2.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: base
+    attributes:
+      label: Сметно-нормативная база
+      options:
+        - ТСНБ ТЕР-2001 Самарской области, редакция 2014
+        - ТЕР другого региона (напишу ниже)
+        - ФСНБ-2022
+        - ФЕР или ГЭСН
+        - Не знаю
+    validations:
+      required: true
+  - type: dropdown
+    id: result
+    attributes:
+      label: Что получилось
+      options:
+        - Всё встало, расценки подтянулись из базы
+        - Файл открылся, но расценки пустые или не все
+        - Файл не открылся, программа выдала ошибку
+        - Другое (опишу ниже)
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Подробности
+      description: Что делали по шагам, какие сообщения видели. Скриншот можно просто перетащить сюда.
+    validations:
+      required: false
+  - type: textarea
+    id: file
+    attributes:
+      label: Файл
+      description: Если загружали свой файл, а не проверочный, приложите его в .zip. Без данных заказчиков.
+    validations:
+      required: false

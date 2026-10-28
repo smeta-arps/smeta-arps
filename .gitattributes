@@ -1,0 +1,13 @@
+* text=auto eol=lf
+
+# Файлы АРПС и тестовые входы сравниваются байт в байт: git их не трогает
+*.arp binary
+tests/fixtures/** binary
+
+*.bat text eol=crlf
+*.docx binary
+*.xlsx binary
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.ico binary

@@ -1,0 +1,8 @@
+node_modules/
+__pycache__/
+*.pyc
+.vercel/
+Thumbs.db
+desktop.ini
+.DS_Store
+web/download/

@@ -1,0 +1,37 @@
+name: Ошибка в конвертере
+description: Сайт не понял файл, потерял строки или выдал неверный результат.
+title: "Ошибка: "
+labels: ["ошибка"]
+body:
+  - type: dropdown
+    id: input
+    attributes:
+      label: Какой файл загружали
+      options:
+        - Word (.docx)
+        - Excel (.xlsx)
+        - CSV
+        - Другой
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: Что произошло
+      description: Что ожидали и что увидели. Скриншот можно перетащить сюда.
+    validations:
+      required: true
+  - type: textarea
+    id: file
+    attributes:
+      label: Файл
+      description: Приложите исходный файл в .zip, если можно. Пожалуйста, замените данные заказчика на условные.
+    validations:
+      required: false
+  - type: input
+    id: browser
+    attributes:
+      label: Браузер и устройство
+      placeholder: "Chrome на Windows, Safari на iPhone"
+    validations:
+      required: false
