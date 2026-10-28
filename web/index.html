@@ -246,17 +246,18 @@ table.preview { width: 100%; border-collapse: collapse; font-size: 13px; }
 
 /* вместе */
 .together { background: var(--mist); }
-.ways { display: grid; gap: 20px; margin-bottom: 40px; }
+.ways { display: grid; gap: 20px; }
 @media (min-width: 900px) { .ways { grid-template-columns: repeat(3, 1fr); } }
 .ways .step a { font-weight: 600; }
-.together-actions { display: flex; flex-wrap: wrap; gap: 14px 18px; align-items: center; justify-content: center; }
-.btn.navy { background: var(--navy); border-color: var(--navy); }
-.btn.navy:hover { background: var(--navy-deep); border-color: var(--navy-deep); }
-.btn.off { background: transparent; border-color: var(--line); color: var(--muted); cursor: default; }
-.together-note { margin-top: 14px; text-align: center; color: var(--muted); font-size: 14px; }
+.together-head { gap: 0; max-width: 46em; margin-bottom: 48px; }
+.together-head h2 { margin-bottom: 32px; }
+.together-head .win-line { margin-top: 16px; font-size: 15px; color: var(--muted); }
+.together-head .win-line a { font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.together-head .together-lead { margin-top: 36px; }
+@media (max-width: 559px) { .together-head h2 { margin-bottom: 24px; } .together-head .together-lead { margin-top: 28px; } }
 /* большая кнопка GitHub с бегущей подсветкой по рамке */
 @property --gh-a { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
-.gh-card { position: relative; isolation: isolate; justify-self: center; width: 100%; max-width: 640px; margin: 10px 0 6px; display: grid; grid-template-columns: auto 1fr auto; gap: 20px; align-items: center; padding: 24px 26px; border-radius: 20px; color: #fff; text-decoration: none; text-align: left; transition: transform .2s ease-out; }
+.gh-card { position: relative; isolation: isolate; justify-self: center; width: 100%; max-width: 640px; margin: 0; display: grid; grid-template-columns: auto 1fr auto; gap: 20px; align-items: center; padding: 24px 26px; border-radius: 20px; color: #fff; text-decoration: none; text-align: left; transition: transform .2s ease-out; }
 .gh-card::before { content: ""; position: absolute; inset: -2px; border-radius: 22px; z-index: -2; background: conic-gradient(from var(--gh-a), rgba(255,255,255,.12) 0deg 200deg, #3ab65a 260deg, #a9b4ff 310deg, rgba(255,255,255,.12) 350deg); animation: gh-spin 5s linear infinite; }
 .gh-card::after { content: ""; position: absolute; inset: 0; border-radius: 20px; z-index: -1; background: var(--navy); box-shadow: 0 18px 40px -20px rgba(16,18,46,.6); }
 @keyframes gh-spin { to { --gh-a: 360deg; } }
@@ -466,10 +467,11 @@ footer { padding: 48px 0 32px; font-size: 15px; color: var(--text); }
 
   <section class="section together" id="together">
     <div class="wrap">
-      <div class="head center">
+      <div class="head center together-head">
         <h2>Давайте улучшим вместе</h2>
         <a class="gh-card" href="https://github.com/smeta-arps/smeta-arps"><svg class="gh-logo" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg><span><b>Открыть проект на GitHub</b><small>Исходный код, задачи и обсуждения</small></span><svg class="gh-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
-        <p>Мы работаем, чтобы конвертер понимал как можно больше форматов и сметных программ и упрощал жизнь строителям и всем, кто занимается сметным делом. Код открыт, и только вместе мы сделаем его по-настоящему удобным.</p>
+        <p class="win-line">Нужна работа без интернета? <a href="download/smeta-arps-windows.zip" download>Скачайте версию для Windows</a>, архив 0,4 МБ.</p>
+        <p class="together-lead">Мы работаем, чтобы конвертер понимал как можно больше форматов и сметных программ и упрощал жизнь строителям и всем, кто занимается сметным делом. Код открыт, и только вместе мы сделаем его по-настоящему удобным.</p>
       </div>
       <div class="ways">
         <div class="step">
@@ -482,16 +484,9 @@ footer { padding: 48px 0 32px; font-size: 15px; color: var(--text); }
         </div>
         <div class="step">
           <h3>Предложите правку</h3>
-          <p>Исправления, новые форматы и описание задач принимаем на GitHub. Там же видно, над чем идёт работа.</p>
+          <p>Исправления, новые форматы и описание задач принимаем на <a href="https://github.com/smeta-arps/smeta-arps/issues">GitHub</a>. Там же видно, над чем идёт работа.</p>
         </div>
       </div>
-      <div class="together-actions">
-        <a class="btn" href="download/smeta-arps-windows.zip" download>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
-          Скачать версию для Windows
-        </a>
-      </div>
-      <p class="together-note">Версия для Windows работает без интернета: распакуйте архив и откройте «Смета в АРПС.html».</p>
     </div>
   </section>
 

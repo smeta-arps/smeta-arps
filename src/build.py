@@ -51,8 +51,7 @@ out = (page.replace("<!--CONVERTER_SCRIPT-->", "<script>\n" + js + "</script>")
 assert "—" not in out, "длинное тире в тексте страницы"
 
 # версия для Windows: та же страница с относительными адресами, открывается двойным щелчком без интернета
-offline = out.replace('<a class="btn" href="download/smeta-arps-windows.zip" download>', '<a class="btn" href="https://smeta-arps.ru/" hidden>')
-offline = offline.replace('<p class="together-note">', '<p class="together-note" hidden>')
+offline = out.replace('<p class="win-line">', '<p class="win-line" hidden>')
 os.makedirs(os.path.join(WEB, "download"), exist_ok=True)
 zpath = os.path.join(WEB, "download", "smeta-arps-windows.zip")
 with zipfile.ZipFile(zpath, "w", zipfile.ZIP_DEFLATED) as z:
