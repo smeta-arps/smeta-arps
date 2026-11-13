@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://smeta-arps.ru/sitemap.xml

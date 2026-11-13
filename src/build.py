@@ -79,6 +79,18 @@ if base:
 if noindex:
     out = out.replace('<meta name="viewport"', '<meta name="robots" content="noindex, nofollow">\n<meta name="viewport"', 1)
 
+# robots.txt и sitemap.xml: строка Sitemap нужна только с абсолютным адресом и открытой индексацией
+robots = "User-agent: *\nAllow: /\n"
+if base and not noindex:
+    import datetime
+    robots += "\nSitemap: %s/sitemap.xml\n" % base
+    open(os.path.join(WEB, "sitemap.xml"), "w", encoding="utf-8", newline="\n").write(
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        '  <url><loc>%s/</loc><lastmod>%s</lastmod></url>\n'
+        '</urlset>\n' % (base, datetime.date.today().isoformat()))
+open(os.path.join(WEB, "robots.txt"), "w", encoding="utf-8", newline="\n").write(robots)
+
 open(os.path.join(WEB, "index.html"), "w", encoding="utf-8", newline="\n").write(out)
 print("web/index.html:", len(out.encode("utf-8")) // 1024, "KB", ("(адрес %s)" % base) if base else "(локально)",
       "noindex" if noindex else "")
